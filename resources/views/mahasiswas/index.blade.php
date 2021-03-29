@@ -15,6 +15,16 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+    <form method="post" action="{{ url('cari') }}" id="myForm">
+        @csrf
+        <div class="form-group">
+            <label for="Nim">Cari</label>
+            <input type="text" name="nim" class="form-control" id="Nim" aria-describedby="Nim"placeholder="Cari bedasarkan nim">
+        </div>
+        <button type="submit" class="btn btn-success mt-3">
+            cari
+        </button>
+    </form>
     <table class="table table-bordered">
         <tr>
             <th>Nim</th>
@@ -33,8 +43,8 @@
                 <td>{{ $Mahasiswa->Kelas }}</td>
                 <td>{{ $Mahasiswa->Jurusan }}</td>
                 <td>{{ $Mahasiswa->No_Handphone }}</td>
-                <td>{{ $Mahasiswa->Email}}</td>
-	            <td>{{ $Mahasiswa->Tanggal_Lahir}}</td>
+                <td>{{ $Mahasiswa->Email }}</td>
+                <td>{{ $Mahasiswa->Tanggal_Lahir }}</td>
                 <td>
                     <form action="{{ route('mahasiswas.destroy', $Mahasiswa->Nim) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('mahasiswas.show', $Mahasiswa->Nim) }}">Show</a>
@@ -47,5 +57,5 @@
             </tr>
         @endforeach
     </table>
-    {{$mahasiswas->links()}}
+    {{ $mahasiswas->links() }}
 @endsection

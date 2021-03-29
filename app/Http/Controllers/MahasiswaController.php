@@ -17,7 +17,7 @@ class MahasiswaController extends Controller
         //fungsi eloquent menampilkan data menggunakan pagination
         $mahasiswas = Mahasiswa::all(); // Mengambil semua isi tabel
         $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(5);
-        return view('mahasiswas.index', compact('mahasiswas'))
+        return view('mahasiswas.index', compact('mahasiswa'))
             -> with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -125,4 +125,10 @@ class MahasiswaController extends Controller
         return redirect()->route('mahasiswas.index')
             -> with('success', 'Mahasiswa Berhasil Dihapus');
     }
+
+    public function cari(Request $request)
+	{
+		$mahasiswa=Mahasiswa::where('Nim',$request->Nim)->first();
+        return view('mahasiswas.cari',compact('mahasiswa'));
+	}
 }
